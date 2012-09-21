@@ -1,1 +1,7 @@
-Not yet
+Depends on:
+
+PIL
+numpy
+nosetests
+
+
