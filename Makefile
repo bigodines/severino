@@ -3,14 +3,15 @@
 default: help
 
 ### tests
-tests:
-	nosetests test/*.py
-
 tests-unit:
 	nosetests test/unit/*.py
 
 tests-external:
 	nosetests test/external/*.py
+
+tests:
+	make tests-unit
+	make tests-external
 
 ### env
 dependencies:
