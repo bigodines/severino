@@ -53,7 +53,7 @@ class testCompare(unittest.TestCase):
 
         result = self.compare.directories(dir_a, dir_b)
 
-        self.assertNotEqual([], result)
+        self.assertEqual(['test/resources/equal_a.png', 'test/resources/equal_b.png'], result)
 
 
 if __name__ == "__main__":
