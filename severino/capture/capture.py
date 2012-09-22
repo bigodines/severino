@@ -1,3 +1,4 @@
+import inspect
 import os
 import sys
 import json
@@ -7,7 +8,7 @@ import selenium.webdriver as webdriver
 class SeverinoCapture(object):
 
 	def __init__(self):
-		json_data=open('config/config.json')
+		json_data=open(os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe()))) + '/../config/config.json')
 		data = json.load(json_data)
 		self.selenium = data["selenium"]
 		self.pages = data["pages"]
