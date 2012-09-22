@@ -2,6 +2,9 @@
 
 default: help
 
+tests:
+	nosetests test/
+
 dependencies:
 	@echo "Installing dependencies..."
 	@curl -L -o virtualenv.py https://raw.github.com/pypa/virtualenv/master/virtualenv.py
