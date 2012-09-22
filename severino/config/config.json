@@ -1,0 +1,30 @@
+{
+    "pages": {
+        "yahoo": {
+            "url": "http://www.yahoo.com",
+            "filename": "yahoo.png"
+        },
+        "google": {
+            "url": "http://www.google.com",
+            "filename": "google.png"
+        },
+        "terra": {
+            "url": "http://www.terra.com.br",
+            "filename": "terra.png"
+        },
+        "facebook": {
+            "url": "http://www.facebook.com",
+            "filename": "facebook.png"
+        }
+    },
+    "selenium": {
+        "server": "http://localhost:4444/wd/hub",
+        "browsers": [
+            "chrome",
+            "firefox"
+        ]
+    },
+    "severino" : {
+    	"screenshots_dir" : "screenshots/"
+    }
+}

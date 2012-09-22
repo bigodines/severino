@@ -1,3 +1,4 @@
 *.pyc
 virtualenv.py
 severino-venv/
+screenshots/
