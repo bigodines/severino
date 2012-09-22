@@ -39,6 +39,22 @@ class testCompare(unittest.TestCase):
 
         self.assertFalse(result)
 
+    def test_compare_should_be_able_to_compare_identical_directories(self):
+        dir_a = 'test/resources/'
+        dir_b = 'test/resources/'
+
+        result = self.compare.directories(dir_a, dir_b)
+
+        self.assertEqual([], result)
+
+    def test_compare_should_accept_wildcards_in_dir_comparison(self):
+        dir_a = 'test/resources/equal*.png'
+        dir_b = 'test/resources/*.png'
+
+        result = self.compare.directories(dir_a, dir_b)
+
+        self.assertNotEqual([], result)
+
 
 if __name__ == "__main__":
     print "Please run with 'make tests' from Severino root directory"
