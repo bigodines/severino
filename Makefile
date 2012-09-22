@@ -3,7 +3,7 @@
 default: help
 
 tests:
-	nosetests test/
+	nosetests test/*.py
 
 dependencies:
 	@echo "Installing dependencies..."
@@ -20,3 +20,5 @@ clean:
 help:
 	@echo "dependencies:\t install the development dependencies"
 	@echo "clean:\t\t removes the virtualenv"
+	@echo "\t\t"
+	@echo "tests:\t run all tests"
