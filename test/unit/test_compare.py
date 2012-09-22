@@ -1,5 +1,5 @@
 import unittest
-from ..severino.core import compare
+from ...severino.compare import compare
 
 class testCompare(unittest.TestCase):
 

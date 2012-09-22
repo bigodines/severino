@@ -2,9 +2,17 @@
 
 default: help
 
+### tests
 tests:
 	nosetests test/*.py
 
+tests-unit:
+	nosetests test/unit/*.py
+
+tests-external:
+	nosetests test/external/*.py
+
+### env
 dependencies:
 	@echo "Installing dependencies..."
 	@curl -L -o virtualenv.py https://raw.github.com/pypa/virtualenv/master/virtualenv.py
@@ -17,8 +25,11 @@ clean:
 	@rm -rf severino-venv
 	@echo "Done."
 
+## help
 help:
 	@echo "dependencies:\t install the development dependencies"
 	@echo "clean:\t\t removes the virtualenv"
 	@echo "\t\t"
 	@echo "tests:\t run all tests"
+	@echo "tests-unit:\t run all unit tests"
+	@echo "tests-external:\t run all external tests"
