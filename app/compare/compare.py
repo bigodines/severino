@@ -27,13 +27,27 @@ class Compare(object):
         """
         compares two directories and returns a list of different files
         """
-        files_a = glob.glob(dir_a)
-        files_b = glob.glob(dir_b)
+        files_a = sorted(glob.glob(dir_a))
+        files_b = sorted(glob.glob(dir_b))
 
-        # check file count/names
-        different_files = list(set(files_a) - set(files_b))
+        buff_a = [os.path.basename(x) for x in files_a]
+        buff_b = [os.path.basename(x) for x in files_b]
+
+        if len(buff_a) > len(buff_b):
+            for buff in buff_b:
+                buff_a.remove(buff)
+
+            different_files = buff_a
+
+        else:
+            for buff in buff_a:
+                buff_b.remove(buff)
+
+            different_files = buff_b
+
+        print different_files
         if different_files != []:
-            different_files
+            return different_files
 
         else: 
             wrongFiles = []
@@ -45,3 +59,5 @@ class Compare(object):
 
             return wrongFiles
         
+
+

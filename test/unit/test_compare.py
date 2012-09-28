@@ -1,5 +1,7 @@
 import unittest
-from ...severino.compare import compare
+import sys, os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'severino'))
+from severino.app.compare import compare
 
 class testCompare(unittest.TestCase):
 
@@ -53,7 +55,7 @@ class testCompare(unittest.TestCase):
 
         result = self.compare.directories(dir_a, dir_b)
 
-        self.assertEqual(['test/resources/equal_a.png', 'test/resources/equal_b.png'], result)
+        self.assertEqual(['almost_equal.png', 'almost_equal_b.png', 'different.png'], result)
 
 
 if __name__ == "__main__":

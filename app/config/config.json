@@ -1,7 +1,7 @@
 {
     "pages": {
         "yahoo": {
-            "url": "http://www.yahoo.com",
+            "url": "http://search.yahoo.com",
             "filename": "yahoo.png"
         },
         "google": {
