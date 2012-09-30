@@ -26,3 +26,8 @@ class testSeverino(unittest.TestCase):
         diffs = sev.compare(base="./test/resources/good_rev/*")
         self.assertEqual(['./test/resources/bad_rev/chrome-yahoo.png'], diffs)
 
+
+    def test_severino_should_create_database_if_doesnt_exist(self):
+        sev = severino.Severino(db="./test/test.db")
+        
+        self.assertTrue(sev.storage.is_valid())
