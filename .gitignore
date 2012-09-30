@@ -2,3 +2,4 @@
 virtualenv.py
 severino-venv/
 screenshots/
+*.DS_Store

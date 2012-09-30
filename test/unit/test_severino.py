@@ -29,5 +29,6 @@ class testSeverino(unittest.TestCase):
 
     def test_severino_should_create_database_if_doesnt_exist(self):
         sev = severino.Severino(db="./test/test.db")
-        
         self.assertTrue(sev.storage.is_valid())
+
+
