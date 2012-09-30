@@ -1,5 +1,5 @@
 from app.compare import compare
-from app.storage import lite
+from app.storage import database
 
 class Severino(object): 
 
@@ -7,7 +7,7 @@ class Severino(object):
         self.base = base
         self.current = current
         self.is_ok = True
-        self.storage = lite.Db(db)
+        self.storage = database.Lite(db)
 
 
     def compare(self, base=None, current=None):

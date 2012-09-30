@@ -1,6 +1,6 @@
 import sqlite3 
 
-class Db(object):
+class Lite(object):
     
     def __init__(self, db=None):
         self.db = db
@@ -14,7 +14,6 @@ class Db(object):
                         ("tablename" ,)).fetchone() > 0
 
         except Exception as e:
-            print e
             return False
 
 
