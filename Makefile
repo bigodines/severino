@@ -1,4 +1,5 @@
 # Makefile for Severino
+TARGET_DIR=screenshots
 
 default: help
 
@@ -25,6 +26,12 @@ clean:
 	@echo "Removing the virtualenv files"
 	@rm -rf severino-venv
 	@echo "Done."
+
+
+### app
+capture:
+	@echo "taking screenshots into ./$(TARGET_DIR)/"
+	@echo "not implemented yet ;P"
 
 ## help
 help:
