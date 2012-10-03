@@ -1,4 +1,5 @@
 import sqlite3 
+from datetime import datetime
 
 class Lite(object):
     
@@ -7,8 +8,8 @@ class Lite(object):
 
 
     def is_valid(self):
+        self.conn = sqlite3.connect(self.db)
         try:
-            self.conn = sqlite3.connect(self.db)
             self.setup()
             return self.conn.execute("select count(*) from sqlite_master where name=?",
                         ("tablename" ,)).fetchone() > 0
@@ -25,5 +26,8 @@ class Lite(object):
         except:
             pass
 
-    def create_log(self, **kwargs):
-        pass
+    def create_log(self, name, status):
+        with self.conn:
+            cur = self.conn.cursor()
+            cur.execute("INSERT INTO history(name, status, generated) VALUES (?, ?, ?)", (name, status, datetime.now()))
+

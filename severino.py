@@ -1,3 +1,4 @@
+import os
 from app.compare import compare
 from app.storage import database
 
@@ -8,6 +9,7 @@ class Severino(object):
         self.current = current
         self.rev = rev
         self.is_ok = True
+        self.db_path = db
         self.storage = database.Lite(db)
 
 
@@ -22,8 +24,12 @@ class Severino(object):
 
     def _flag_as_good(self):
         if self.storage.is_valid():
-            self.storage.create_log(base=self.base, current=self.current, revision=self.rev, status=1)
+            self.storage.create_log(name=self.rev, status=1)
 
 
     def check(self, revision=None):
         return True
+
+
+    def remove_db(self):
+        os.remove(self.db_path)
