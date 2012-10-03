@@ -30,5 +30,11 @@ class testSeverino(unittest.TestCase):
     def test_severino_should_create_database_if_doesnt_exist(self):
         sev = severino.Severino(db="./test/test.db")
         self.assertTrue(sev.storage.is_valid())
+        os.remove("./test/test.db")
 
 
+    def test_severino_should_add_a_new_revision_to_history(self):
+        sev = severino.Severino(rev="test_revision", db="./test/test.db")
+        sev._flag_as_good() # this should be called by compare()
+        
+        self.assertTrue(sev.check("test_revision"))

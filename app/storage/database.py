@@ -25,4 +25,5 @@ class Lite(object):
         except:
             pass
 
-        
+    def create_log(self, **kwargs):
+        pass

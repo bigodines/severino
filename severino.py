@@ -3,9 +3,10 @@ from app.storage import database
 
 class Severino(object): 
 
-    def __init__(self, base=None, current=None, db="storage/severino.db"):
+    def __init__(self, base=None, current=None, db="storage/severino.db", rev=None):
         self.base = base
         self.current = current
+        self.rev = rev
         self.is_ok = True
         self.storage = database.Lite(db)
 
@@ -19,4 +20,10 @@ class Severino(object):
         result = comp.directories(self.current, self.base)
         return result
 
+    def _flag_as_good(self):
+        if self.storage.is_valid():
+            self.storage.create_log(base=self.base, current=self.current, revision=self.rev, status=1)
 
+
+    def check(self, revision=None):
+        return True
