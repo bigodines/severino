@@ -31,3 +31,8 @@ class Lite(object):
             cur = self.conn.cursor()
             cur.execute("INSERT INTO history(name, status, generated) VALUES (?, ?, ?)", (name, status, datetime.now()))
 
+    def get(self, revision):
+        with self.conn:
+            cur = self.conn.cursor()
+            return cur.execute("SELECT id, name, status, generated FROM history WHERE name=:revision ORDER BY generated DESC LIMIT 1",{"revision": revision}).fetchone()
+            

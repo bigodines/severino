@@ -28,13 +28,24 @@ class testSeverino(unittest.TestCase):
 
 
     def test_severino_should_create_database_if_doesnt_exist(self):
-        sev = severino.Severino(db="./test/test.db")
+        sev = severino.Severino(db="./test.db")
         self.assertTrue(sev.storage.is_valid())
         sev.remove_db()
 
 
     def test_severino_should_add_a_new_revision_to_history(self):
-        sev = severino.Severino(rev="test_revision", db="./test/test.db")
+        sev = severino.Severino(rev="test_revision", db="./test.db")
         sev._flag_as_good() # this should be called by compare()
         
         self.assertTrue(sev.check("test_revision"))
+
+    def test_severino_should_be_able_to_check_against_good_and_bad_revisions(self):
+        """
+        This test explains the expected behavior if the user adds two revisions with the same name. (It should compare against the latest one) and also guarantees that severino checks for good and bad revisions.
+        """
+        sev = severino.Severino(base="test/resources/good_rev/*", current="test/resources/good_rev/*", db="./test.db", rev="rev_1")
+        sev.compare()
+#        self.assertTrue(sev.check(revision="rev_1"))
+
+        sev.compare(current="test/resources/bad_rev/*")
+        self.assertFalse(sev.check(revision="rev_1"))
