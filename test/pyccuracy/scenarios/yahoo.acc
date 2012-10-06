@@ -1,0 +1,14 @@
+As a user
+I want to be able to visit the Yahoo! page
+So that I can see if it is working
+
+Scenario 1 - Main Page
+Given
+    I go to Yahoo Page
+When
+    I see "search field" element
+    And I fill "search field" textbox with "severino rocks"
+    And I click "search button" element and wait
+Then
+   I see "severino rocks - Yahoo! Search Resultados da busca" title
+   And I take a screenshot

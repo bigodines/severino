@@ -10,6 +10,9 @@ tests-unit:
 tests-external:
 	nosetests test/external/*.py
 
+tests-pyccuracy:
+	cd test/pyccuracy; pyccuracy_console -P pages -e webdriver -A actions
+
 tests:
 	make tests-unit
 	make tests-external
