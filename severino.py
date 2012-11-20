@@ -1,3 +1,4 @@
+import argparse
 import os
 from app.compare import compare
 from app.storage import database
@@ -53,3 +54,37 @@ class Severino(object):
 
     def remove_db(self):
         os.remove(self.db_path)
+
+
+
+## creates a new  severino instance based on CL parameters ##
+def start_severino(args={}):
+    pass
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='Severino compares screenshots to detect differences')
+    parser.add_argument('-b', '--base', 
+                        metavar='revision',
+                        help="Sets a new base version to be used as comparison parameter (latest 'good' as default)")
+    parser.add_argument('-c', '--current', 
+                        metavar='revision',
+                        help="Defines a directory (revision name) to be compared against --base (default will take new screenshots)")
+    parser.add_argument('-no-cap', '--no_capture', 
+                        action='store_false',
+                        help="Do not attempt to capture new screenshots")
+    parser.add_argument('-no-cmp', '--no_compare', 
+                        action='store_false',
+                        help="Do not compare, just take screenshots")
+    parser.add_argument('-last','--last_good', 
+                        help="Returns the latest 'good' revision")
+    parser.add_argument('-flag','--flag', 
+                        help='Flag revision R as good/bad')
+
+
+    args = parser.parse_args()
+
+
+    start_severino(args)
+
+
