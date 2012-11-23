@@ -1,7 +1,10 @@
+import argparse
 import unittest
 import sys, os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'severino'))
 from severino import severino
+from mock import patch
+from mock import Mock
 
 class testSeverino(unittest.TestCase):
     
@@ -49,3 +52,17 @@ class testSeverino(unittest.TestCase):
 
         sev.compare(current="test/resources/bad_rev/*")
         self.assertFalse(sev.check(revision="rev_1"))
+
+    # mocking Severino
+    def test_start_severino_should_interpret_arguments_properly(self):
+        with patch('severino.severino.Severino', spec=True) as MockClass:
+            MockInstance = Mock()
+            MockClass.return_value = MockInstance
+
+            args = Mock()
+            args.base=  'foo'
+            args.current = 'new_version'
+
+            severino.start_severino(args)
+
+            MockInstance.compare.assert_called_once_with('foo', 'new_version')

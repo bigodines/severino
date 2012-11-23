@@ -59,7 +59,15 @@ class Severino(object):
 
 ## creates a new  severino instance based on CL parameters ##
 def start_severino(args={}):
-    pass
+    base = current = None
+    if args.base != None:
+        base = args.base
+
+    if args.current != None:
+        current = args.current
+
+    sev = Severino(base, current)
+    sev.compare(base, current)
 
 
 if __name__ == "__main__":
