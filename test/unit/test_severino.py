@@ -62,7 +62,11 @@ class testSeverino(unittest.TestCase):
             args = Mock()
             args.base=  'foo'
             args.current = 'new_version'
-
+            args.db = None
+            args.rev = None
+            args.no_compare = False
+            args.last_good = None
+            args.flag = None
             severino.start_severino(args)
 
-            MockInstance.compare.assert_called_once_with('foo', 'new_version')
+            MockInstance.compare.assert_called_once_with()

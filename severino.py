@@ -19,6 +19,7 @@ class Severino(object):
             self.base = base
         if current != None:
             self.current = current
+
         comp = compare.Compare()
         result = comp.directories(self.current, self.base)
         name = self.rev if self.rev != None else self.current
@@ -48,7 +49,6 @@ class Severino(object):
             return False
 
         all = self.storage.get(revision)
-        print all
         return all[2] == 1
 
 
@@ -67,7 +67,9 @@ def start_severino(args={}):
         current = args.current
 
     sev = Severino(base, current)
-    sev.compare(base, current)
+
+    if args.no_compare == False:
+        print sev.compare()
 
 
 if __name__ == "__main__":
@@ -78,9 +80,6 @@ if __name__ == "__main__":
     parser.add_argument('-c', '--current', 
                         metavar='revision',
                         help="Defines a directory (revision name) to be compared against --base (default will take new screenshots)")
-    parser.add_argument('-no-cap', '--no_capture', 
-                        action='store_false',
-                        help="Do not attempt to capture new screenshots")
     parser.add_argument('-no-cmp', '--no_compare', 
                         action='store_false',
                         help="Do not compare, just take screenshots")
