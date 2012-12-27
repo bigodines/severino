@@ -43,6 +43,9 @@ class Severino(object):
         if self.storage.is_valid():
             self.storage.create_log(name=revision, status=status)
 
+    def last_good(self):
+        if self.storage.is_valid():
+            return self.storage.last_good()
 
     def check(self, revision=None):
         if self.storage.is_valid() == False or revision == None:
@@ -69,7 +72,11 @@ def start_severino(args={}):
     sev = Severino(base, current)
 
     if args.no_compare == False:
-        print sev.compare()
+        sev.compare()
+
+    if args.last_good == True:
+        print sev.last_good()
+        
 
 
 if __name__ == "__main__":
@@ -84,13 +91,13 @@ if __name__ == "__main__":
                         action='store_false',
                         help="Do not compare, just take screenshots")
     parser.add_argument('-last','--last_good', 
+                        action='store_false',
                         help="Returns the latest 'good' revision")
     parser.add_argument('-flag','--flag', 
                         help='Flag revision R as good/bad')
 
 
     args = parser.parse_args()
-
 
     start_severino(args)
 

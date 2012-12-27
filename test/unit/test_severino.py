@@ -65,8 +65,27 @@ class testSeverino(unittest.TestCase):
             args.db = None
             args.rev = None
             args.no_compare = False
-            args.last_good = None
+            args.last_good = False
             args.flag = None
             severino.start_severino(args)
 
             MockInstance.compare.assert_called_once_with()
+
+
+    def test_last_good_will_retrieve_last_revision_flagged_as_good(self):
+        with patch('severino.severino.Severino', spec=True) as MockClass:
+            MockInstance = Mock()
+            MockClass.return_value = MockInstance
+
+            args = Mock()
+            args.base=  'foo'
+            args.current = 'new_version'
+            args.db = './test.db'
+            args.rev = 'rev_name'
+            args.no_compare = True
+            args.last_good = True
+            args.flag = False
+            severino.start_severino(args)
+
+            MockInstance.last_good.assert_called_once_with()
+        
