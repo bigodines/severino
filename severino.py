@@ -54,7 +54,6 @@ class Severino(object):
         all = self.storage.get(revision)
         return all[2] == 1
 
-
     def remove_db(self):
         os.remove(self.db_path)
 

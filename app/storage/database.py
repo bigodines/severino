@@ -9,6 +9,7 @@ class Lite(object):
 
     def is_valid(self):
         self.conn = sqlite3.connect(self.db)
+        self.conn.row_factory = sqlite3.Row
         try:
             self.setup()
             return self.conn.execute("select count(*) from sqlite_master where name=?",
@@ -35,4 +36,8 @@ class Lite(object):
         with self.conn:
             cur = self.conn.cursor()
             return cur.execute("SELECT id, name, status, generated FROM history WHERE name=:revision ORDER BY generated DESC LIMIT 1",{"revision": revision}).fetchone()
-            
+
+    def last_good(self):
+        with self.conn:
+            cur = self.conn.cursor()
+            return cur.execute("SELECT id, name, status, generated FROM history WHERE status = 1 ORDER BY generated DESC LIMIT 1").fetchone()

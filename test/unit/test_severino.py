@@ -42,6 +42,17 @@ class testSeverino(unittest.TestCase):
         
         self.assertTrue(sev.check("test_revision"))
 
+    def test_storage_should_find_last_good_revision(self):
+        sev = severino.Severino(rev="some_revision", db="./test.db")
+        sev._flag_as_good() 
+        sev.rev = 'good_rev'
+        sev._flag_as_good()
+        sev.rev = 'bad_rev'
+        sev._flag_as_bad()
+        
+        row = sev.last_good()
+        self.assertEquals('good_rev',row[1])
+
     def test_severino_should_be_able_to_check_against_good_and_bad_revisions(self):
         """
         This test explains the expected behavior if the user adds two revisions with the same name. (It should compare against the latest one) and also guarantees that severino checks for good and bad revisions.
